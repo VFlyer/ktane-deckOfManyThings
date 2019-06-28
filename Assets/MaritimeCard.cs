@@ -28,8 +28,8 @@ class MaritimeCard : StandardCard {
         rank /= (bomb.GetOnIndicators().Count() + 1);
         if(Array.Exists(bomb.GetSerialNumberLetters().ToArray(), x => x == 'A' || x == 'E' || x == 'I' || x == 'O' || x == 'U'))
             rank -= fakeRank;
-        if(rank < 0)
-            rank = -rank;
+        while(rank < 0)
+            rank += 13;
         rank = rank % 13;
         if(rank == 0)
             rank = 13;
