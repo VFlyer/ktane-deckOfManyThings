@@ -171,6 +171,7 @@ public class deckOfManyThingsScript : MonoBehaviour
 	void CalcSolution()
 	{
 		int lastCard = 0;
+		int celestialCardCount = 0;
 
 		for(int i = 0; i < 40; i++)
 		{
@@ -178,7 +179,8 @@ public class deckOfManyThingsScript : MonoBehaviour
 			{
 				Debug.LogFormat("[The Deck of Many Things #{0}] No valid cards from card {1} to card {2}.", moduleId, lastCard + 1, i + 1);
 				lastCard = i;
-				validRanks = ( (CelestialCard) deck[i]).GetValidRanks(bomb, validRanks, startTime, 1, i);
+				celestialCardCount++;
+				validRanks = ( (CelestialCard) deck[i]).GetValidRanks(bomb, validRanks, startTime, celestialCardCount, i);
 				validSuits = ( (CelestialCard) deck[i]).GetValidSuits(bomb, validSuits, startTime, date, deck[0]);
 				Debug.LogFormat("[The Deck of Many Things #{0}] Card {1} changed Valid Ranks to [ {2}] and Valid Suits to [ {3}].", moduleId, i + 1, GetRanks(validRanks), GetSuits(validSuits));
 			}
