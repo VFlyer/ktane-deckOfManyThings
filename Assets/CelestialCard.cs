@@ -135,8 +135,9 @@ class CelestialCard : StandardCard {
 			case 16:
 			{
 				List<int> ret = new List<int>();
-				for(int i = 1; i <= 13 || i <= bomb.GetModuleNames().Count(); i++)
-					ret.Add(i);
+				for(int i = 1; i <= 13; i++)
+					if(i <= bomb.GetModuleNames().Count())
+						ret.Add(i);
 				return ret;
 			}
 			case 18:
