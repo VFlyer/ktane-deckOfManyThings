@@ -45,14 +45,11 @@ public class deckOfManyThingsScript : MonoBehaviour
 	int currentCard = -1;
 	int solution = -1;
 
-	void OnActivate()
-	{
-		date = DateTime.Now.DayOfWeek.ToString();
-		startTime = (int) bomb.GetTime() % 60;
-	}
-
 	void Awake()
 	{
+		date = DateTime.Now.DayOfWeek.ToString();
+		startTime = (int) (bomb.GetTime() / 60);
+
 		moduleId = moduleIdCounter++;
 
 		btns[0].OnInteract += delegate () { ResetCards(); return false; };
