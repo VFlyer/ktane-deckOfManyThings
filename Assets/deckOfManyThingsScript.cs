@@ -473,33 +473,38 @@ public class deckOfManyThingsScript : MonoBehaviour
         string[] parameters = command.Split(' ');
         if (Regex.IsMatch(parameters[0], @"^\s*card\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
-            if (cmdIsValid(parameters[1]))
+            if(parameters.Length == 2)
             {
-                yield return null;
-                int dest = 0;
-                int.TryParse(parameters[1], out dest);
-                dest--;
-                if (currentCard < dest)
+                if (cmdIsValid(parameters[1]))
                 {
-                    int start = currentCard;
-                    for(int i = 0; i < dest - start; i++)
+                    yield return null;
+                    int dest = 0;
+                    int.TryParse(parameters[1], out dest);
+                    dest--;
+                    if (currentCard < dest)
                     {
-                        NextCard();
-                        yield return new WaitForSeconds(0.2f);
+                        int start = currentCard;
+                        for (int i = 0; i < dest - start; i++)
+                        {
+                            NextCard();
+                            yield return new WaitForSeconds(0.2f);
+                        }
                     }
-                }else if (currentCard > dest)
-                {
-                    int start = currentCard;
-                    for (int i = 0; i < start - dest; i++)
+                    else if (currentCard > dest)
                     {
-                        PrevCard();
-                        yield return new WaitForSeconds(0.2f);
+                        int start = currentCard;
+                        for (int i = 0; i < start - dest; i++)
+                        {
+                            PrevCard();
+                            yield return new WaitForSeconds(0.2f);
+                        }
+                    }
+                    else
+                    {
+                        yield return "sendtochat I'm already on this card!";
                     }
                 }
-                else
-                {
-                    yield return "sendtochat I'm already on this card!";
-                }
+                yield break;
             }
             yield break;
         }
