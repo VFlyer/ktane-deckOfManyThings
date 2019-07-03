@@ -461,13 +461,13 @@ public class deckOfManyThingsScript : MonoBehaviour
         if (Regex.IsMatch(command, @"^\s*reset\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             yield return null;
-            ResetCards();
+            btns[0].OnInteract();
             yield break;
         }
         if (Regex.IsMatch(command, @"^\s*submit\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             yield return null;
-            HandleSubmit();
+            btns[1].OnInteract();
             yield break;
         }
         string[] parameters = command.Split(' ');
@@ -486,7 +486,7 @@ public class deckOfManyThingsScript : MonoBehaviour
                         int start = currentCard;
                         for (int i = 0; i < dest - start; i++)
                         {
-                            NextCard();
+                            nextCard.OnInteract();
                             yield return new WaitForSeconds(0.2f);
                         }
                     }
@@ -495,7 +495,7 @@ public class deckOfManyThingsScript : MonoBehaviour
                         int start = currentCard;
                         for (int i = 0; i < start - dest; i++)
                         {
-                            PrevCard();
+                            prevCard.OnInteract();
                             yield return new WaitForSeconds(0.2f);
                         }
                     }
