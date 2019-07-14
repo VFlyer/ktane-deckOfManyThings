@@ -47,15 +47,19 @@ public class deckOfManyThingsScript : MonoBehaviour
 
     void Awake()
     {
-        date = DateTime.Now.DayOfWeek.ToString();
-        startTime = (int)(bomb.GetTime() / 60);
-
         moduleId = moduleIdCounter++;
+        GetComponent<KMBombModule>().OnActivate += Activate;
 
         btns[0].OnInteract += delegate () { ResetCards(); return false; };
         btns[1].OnInteract += delegate () { HandleSubmit(); return false; };
         prevCard.OnInteract += delegate () { PrevCard(); return false; };
         nextCard.OnInteract += delegate () { NextCard(); return false; };
+    }
+
+    void Activate()
+    {
+        date = DateTime.Now.DayOfWeek.ToString();
+        startTime = (int)(bomb.GetTime() / 60);
     }
 
     void Start()
