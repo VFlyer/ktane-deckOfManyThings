@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using KModkit;
+using rnd = UnityEngine.Random;
 
 class MaritimeCard : StandardCard {
 
@@ -11,8 +12,8 @@ class MaritimeCard : StandardCard {
 
     public MaritimeCard()
     {
-        fakeRank = rnd.Next() % 8 + 11;
-        suit = rnd.Next() % 4;
+        fakeRank = rnd.Range(0, 8) + 11;
+        suit = rnd.Range(0, 4);
     }
 
     public override void PrintLogMessage(int moduleId)

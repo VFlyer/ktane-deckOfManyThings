@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using KModkit;
+using rnd = UnityEngine.Random;
 
 class CelestialCard : StandardCard {
 
@@ -11,7 +12,7 @@ class CelestialCard : StandardCard {
 
     public CelestialCard()
     {
-        arcana = rnd.Next() % 22;
+        arcana = rnd.Range(0, 22);
     }
 
     public override void PrintLogMessage(int moduleId)

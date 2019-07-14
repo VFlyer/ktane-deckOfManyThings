@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using KModkit;
+using rnd = UnityEngine.Random;
 
 class MetropolitanCard : StandardCard {
 
@@ -11,8 +12,8 @@ class MetropolitanCard : StandardCard {
 
     public MetropolitanCard()
     {
-        fakeSuit = rnd.Next() % 4;
-        rank = rnd.Next() % 13 + 1;
+        fakeSuit = rnd.Range(0, 4);
+        rank = rnd.Range(0, 13) + 1;
     }
 
     public override void PrintLogMessage(int moduleId)

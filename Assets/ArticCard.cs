@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using KModkit;
+using rnd = UnityEngine.Random;
 
 class ArticCard : StandardCard {
 
@@ -12,13 +13,13 @@ class ArticCard : StandardCard {
 
     public ArticCard()
     {
-        fakeSuit = rnd.Next() % 4;
-        fakeRank = rnd.Next() % 13 + 1;
+        fakeSuit = rnd.Range(0, 4);
+        fakeRank = rnd.Range(0, 13) + 1;
     }
 
     public override void PrintLogMessage(int moduleId)
     {
-		Debug.LogFormat("[The Deck of Many Things #{0}] Card Nº {1} is an Artic {2} of {3} (Real Value: {4} of {5}).", moduleId, order + 1, GetRank(fakeRank), GetSuit(fakeSuit), GetRank(rank), GetSuit(suit));
+		Debug.LogFormat("[The Deck of Many Things #{0}] Card Nº {1} is an Arctic {2} of {3} (Real Value: {4} of {5}).", moduleId, order + 1, GetRank(fakeRank), GetSuit(fakeSuit), GetRank(rank), GetSuit(suit));
     }
 
     public override void CalcValue(KMBombInfo bomb)

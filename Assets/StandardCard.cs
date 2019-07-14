@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using KModkit;
+using rnd = UnityEngine.Random;
 
 class StandardCard
 {
@@ -12,16 +13,14 @@ class StandardCard
     static public readonly int DIAMONDS = 1;
     static public readonly int CLUBS = 0;
 
-	static protected System.Random rnd = new System.Random();
-
     public int suit;
     public int rank;
     public int order;
 
     public StandardCard()
     {
-        suit = rnd.Next() % 4;
-        rank = rnd.Next() % 13 + 1;
+        suit = rnd.Range(0, 4);
+        rank = rnd.Range(0, 13) + 1;
     }
 
     public static String GetSuit(int suit)

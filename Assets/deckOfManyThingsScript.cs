@@ -5,13 +5,12 @@ using System.Linq;
 using UnityEngine;
 using KModkit;
 using System.Text.RegularExpressions;
+using rnd = UnityEngine.Random;
 
 public class deckOfManyThingsScript : MonoBehaviour
 {
     public KMBombInfo bomb;
     public KMAudio Audio;
-
-    static System.Random rnd = new System.Random();
 
     //Logging
     static int moduleIdCounter = 1;
@@ -93,7 +92,7 @@ public class deckOfManyThingsScript : MonoBehaviour
         for (int i = 38; i < 40; i++)
             deck[i] = new CelestialCard();
 
-        deck = deck.OrderBy(x => rnd.Next()).ToArray();
+        deck = deck.OrderBy(x => rnd.Range(0, 1000)).ToArray();
 
         for (int i = 0; i < deck.Length; i++)
         {

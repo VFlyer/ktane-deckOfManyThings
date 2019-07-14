@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using KModkit;
+using rnd = UnityEngine.Random;
 
 class OasisCard : StandardCard {
 
@@ -12,8 +13,8 @@ class OasisCard : StandardCard {
 
     public OasisCard()
     {
-        fakeSuit = rnd.Next() % 4;
-        fakeRank = rnd.Next() % 13 + 1;
+        fakeSuit = rnd.Range(0, 4);
+        fakeRank = rnd.Range(0, 13) + 1;
     }
 
     public override void PrintLogMessage(int moduleId)

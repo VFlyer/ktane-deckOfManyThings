@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using KModkit;
+using rnd = UnityEngine.Random;
 
 class TropicalCard : StandardCard {
 
@@ -13,9 +14,9 @@ class TropicalCard : StandardCard {
 
     public TropicalCard()
     {
-        fakeSuit = rnd.Next() % 4;
-        fakeRank = rnd.Next() % 13 + 1;
-        color = rnd.Next() % 6;
+        fakeSuit = rnd.Range(0, 4);
+        fakeRank = rnd.Range(0, 13) + 1;
+        color = rnd.Range(0, 6);
     }
 
     public override void PrintLogMessage(int moduleId)
