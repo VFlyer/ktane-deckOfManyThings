@@ -64,13 +64,7 @@ class CelestialCard : StandardCard {
 				return ret;
 			}
 			case 3:
-			{
-				List<int> ret = new List<int>();
-				ret.AddRange(new int[] {1, 11, 12, 13});
-				return ret;
-			}
 			case 4:
-			case 5:
 			{
 				List<int> ret = new List<int>();
 				ret.AddRange(new int[] {1, 11, 12, 13});

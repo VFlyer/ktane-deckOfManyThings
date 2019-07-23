@@ -60,13 +60,13 @@ public class deckOfManyThingsScript : MonoBehaviour
     {
         date = DateTime.Now.DayOfWeek.ToString();
         startTime = (int)(bomb.GetTime() / 60);
+        CalcInitialValid();
+        CalcSolution();
     }
 
     void Start()
     {
         FillDeck();
-        CalcInitialValid();
-        CalcSolution();
     }
 
     void FillDeck()
