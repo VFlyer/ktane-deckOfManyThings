@@ -356,13 +356,13 @@ class TropicalCard : StandardCard {
 					case 9:
 					{
 						rankSerie = new int[] {5, 12, 1, 2, 11, 12};
-						suitSerie = new int[] {HEARTS, CLUBS, CLUBS, CLUBS, DIAMONDS, CLUBS};
+						suitSerie = new int[] {CLUBS, CLUBS, DIAMONDS, HEARTS, HEARTS, HEARTS};
 						break;
 					}
 					case 10:
 					{
-						rankSerie = new int[] {5, 9, 3, 7, 1, 5};
-						suitSerie = new int[] {CLUBS, CLUBS, DIAMONDS, HEARTS, HEARTS, HEARTS};
+						rankSerie = new int[] {4, 3, 7, 3, 11, 3};
+						suitSerie = new int[] {CLUBS, CLUBS, DIAMONDS, HEARTS, CLUBS, DIAMONDS};
 						break;
 					}
 					case 11:
