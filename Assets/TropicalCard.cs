@@ -19,9 +19,9 @@ class TropicalCard : StandardCard {
         color = rnd.Range(0, 6);
     }
 
-    public override void PrintLogMessage(int moduleId)
+    public override String PrintLogMessage()
     {
-		Debug.LogFormat("[The Deck of Many Things #{0}] Card Nº {1} is a Tropical {2} {3} of {4} (Real Value: {5} of {6}).", moduleId, order + 1, GetColor(color), GetRank(fakeRank), GetSuit(fakeSuit), GetRank(rank), GetSuit(suit));
+		return "Card Nº " + (order + 1) + " is a Tropical " + GetColor(color) + " " + GetRank(fakeRank) + " of " + GetSuit(fakeSuit) + " (Real Value: " + GetRank(rank) + " of " + GetSuit(suit) + ").";
     }
 
 	public String GetColor(int color)

@@ -16,9 +16,9 @@ class MaritimeCard : StandardCard {
         suit = rnd.Range(0, 4);
     }
 
-    public override void PrintLogMessage(int moduleId)
+    public override String PrintLogMessage()
     {
-		Debug.LogFormat("[The Deck of Many Things #{0}] Card Nº {1} is a Maritime {2} of {3} (Real Value: {4} of {3}).", moduleId, order + 1, fakeRank + "", GetSuit(suit), GetRank(rank));
+		return "Card Nº " + (order + 1) + " is a Maritime " + fakeRank + " of " + GetSuit(suit) + " (Real Value: " + GetRank(rank) + " of " + GetSuit(suit) + ").";
     }
 
     public override void CalcValue(KMBombInfo bomb)

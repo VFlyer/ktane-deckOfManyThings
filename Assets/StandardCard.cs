@@ -58,9 +58,9 @@ class StandardCard
         return "";
     }
 
-    public virtual void PrintLogMessage(int moduleId)
+    public virtual String PrintLogMessage()
     {
-		Debug.LogFormat("[The Deck of Many Things #{0}] Card Nº {1} is a Standard {2} of {3}.", moduleId, order + 1, GetRank(rank), GetSuit(suit));
+		return "Card Nº " + (order + 1) + " is a Standard " + GetRank(rank) + " of " + GetSuit(suit) + ".";
     }
 
     public virtual void CalcValue(KMBombInfo bomb)

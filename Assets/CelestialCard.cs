@@ -15,9 +15,9 @@ class CelestialCard : StandardCard {
         arcana = rnd.Range(0, 22);
     }
 
-    public override void PrintLogMessage(int moduleId)
+    public override String PrintLogMessage()
     {
-		Debug.LogFormat("[The Deck of Many Things #{0}] Card Nº {1} is a Celestial card: {2}.", moduleId, order + 1, GetArcana(arcana));
+		return "Card Nº " + (order + 1) + " is a Celestial card: " + GetArcana(arcana) + ".";
     }
 
 	public String GetArcana(int arcana)

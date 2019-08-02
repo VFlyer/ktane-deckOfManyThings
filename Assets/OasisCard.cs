@@ -17,9 +17,9 @@ class OasisCard : StandardCard {
         fakeRank = rnd.Range(0, 13) + 1;
     }
 
-    public override void PrintLogMessage(int moduleId)
+    public override String PrintLogMessage()
     {
-		Debug.LogFormat("[The Deck of Many Things #{0}] Card Nº {1} is an Oasis {2} of {3} (Real Value: {4} of {5}).", moduleId, order + 1, GetRank(fakeRank), GetFakeSuit(fakeSuit), GetRank(rank), GetSuit(suit));
+		return "Card Nº " + (order + 1) + " is an Oasis " + GetRank(fakeRank) + " of " + GetFakeSuit(fakeSuit) + " (Real Value: " + GetRank(rank) + " of " + GetSuit(suit) + ").";
     }
 
 	public String GetFakeSuit(int suit)

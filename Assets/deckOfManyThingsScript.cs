@@ -44,6 +44,7 @@ public class deckOfManyThingsScript : MonoBehaviour
     List<int> validSuits;
     int currentCard = -1;
     int solution = -1;
+    List<String> logs;
 
     void Awake()
     {
@@ -60,20 +61,30 @@ public class deckOfManyThingsScript : MonoBehaviour
     {
         date = DateTime.Now.DayOfWeek.ToString();
         startTime = (int)(bomb.GetTime() / 60);
-        CalcInitialValid();
-        CalcSolution();
+        
+        int cnt = 0;
+        
+        do
+        {
+            cnt++;
+            logs = new List<String>();
+            FillDeck();
+            CalcInitialValid();
+            CalcSolution();
+        } while( (solution > 14 || solution == -1) && cnt < 3);
+
+        foreach(String log in logs)
+        {
+            Debug.Log(log);
+        }
     }
 
-    void Start()
-    {
-        FillDeck();
-    }
 
     void FillDeck()
     {
         deck = new StandardCard[40];
 
-        Debug.LogFormat("[The Deck of Many Things #{0}] ------------Cards------------", moduleId);
+       logs.Add("[The Deck of Many Things #" + moduleId + "] ------------Cards------------");
 
         for (int i = 0; i < 13; i++)
             deck[i] = new StandardCard();
@@ -102,7 +113,7 @@ public class deckOfManyThingsScript : MonoBehaviour
         {
             deck[i].order = i;
             deck[i].CalcValue(bomb);
-            deck[i].PrintLogMessage(moduleId);
+            logs.Add("[The Deck of Many Things #" + moduleId + "] " + deck[i].PrintLogMessage());
 
             SetUpCard(i);
         }
@@ -168,8 +179,8 @@ public class deckOfManyThingsScript : MonoBehaviour
             validSuits.Add(StandardCard.SPADES);
         }
 
-        Debug.LogFormat("[The Deck of Many Things #{0}] ------------Solving------------", moduleId);
-        Debug.LogFormat("[The Deck of Many Things #{0}] Starting Valid Ranks are [ {1}]. Starting Valid Suits are [ {2}].", moduleId, GetRanks(validRanks), GetSuits(validSuits));
+        logs.Add("[The Deck of Many Things #" + moduleId + "] ------------Solving------------");
+        logs.Add("[The Deck of Many Things #" + moduleId + "] Starting Valid Ranks are [ " + GetRanks(validRanks) + "]. Starting Valid Suits are [ " + GetSuits(validSuits) + "].");
     }
 
     void CalcSolution()
@@ -181,22 +192,22 @@ public class deckOfManyThingsScript : MonoBehaviour
         {
             if (deck[i].GetType() == typeof(CelestialCard))
             {
-                Debug.LogFormat("[The Deck of Many Things #{0}] No valid cards from card {1} to card {2}.", moduleId, lastCard + 1, i + 1);
+                logs.Add("[The Deck of Many Things #" + moduleId + "] No valid cards from card " + (lastCard + 1) + " to card " + (i + 1) + ".");
                 lastCard = i;
                 celestialCardCount++;
                 validRanks = ((CelestialCard)deck[i]).GetValidRanks(bomb, validRanks, startTime, celestialCardCount, i);
                 validSuits = ((CelestialCard)deck[i]).GetValidSuits(bomb, validSuits, startTime, date, deck[0]);
-                Debug.LogFormat("[The Deck of Many Things #{0}] Card {1} changed Valid Ranks to [ {2}] and Valid Suits to [ {3}].", moduleId, i + 1, GetRanks(validRanks), GetSuits(validSuits));
+                logs.Add("[The Deck of Many Things #" + moduleId + "] Card " + (i + 1) + " changed Valid Ranks to [ " + GetRanks(validRanks) + "] and Valid Suits to [ " + GetSuits(validSuits) + "].");
             }
             else if (validSuits.Contains(deck[i].suit) && validRanks.Contains(deck[i].rank))
             {
-                Debug.LogFormat("[The Deck of Many Things #{0}] Solution is card Nº {1}.", moduleId, i + 1);
+                logs.Add("[The Deck of Many Things #" + moduleId + "] Solution is card Nº " + (i + 1) + ".");
                 solution = i;
                 return;
             }
         }
 
-        Debug.LogFormat("[The Deck of Many Things #{0}] No valid cards from card {1} to card 40. Solution is no card.", moduleId, lastCard + 1);
+        logs.Add("[The Deck of Many Things #" + moduleId + "] No valid cards from card " + (lastCard + 1) + " to card 40. Solution is no card.");
     }
 
     String GetRanks(List<int> ranks)

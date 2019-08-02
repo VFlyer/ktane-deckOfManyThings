@@ -16,9 +16,9 @@ class MetropolitanCard : StandardCard {
         rank = rnd.Range(0, 13) + 1;
     }
 
-    public override void PrintLogMessage(int moduleId)
+    public override String PrintLogMessage()
     {
-		Debug.LogFormat("[The Deck of Many Things #{0}] Card Nº {1} is a Metropolitan {2} of {3} (Real Value: {2} of {4}).", moduleId, order + 1, GetRank(rank), GetSuit(fakeSuit), GetSuit(suit));
+		return "Card Nº " + (order + 1) + " is a Metropolitan " + GetRank(rank) + " of " + GetSuit(fakeSuit) + " (Real Value: " + GetRank(rank) + " of " + GetSuit(suit) + ").";
     }
 
     public override void CalcValue(KMBombInfo bomb)
