@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Name: ModConfig
   m_EditorClassIdentifier: 
   id: deckOfManyThings
-  title: The Deck of Many Things
-  description: "A traveller's journal in the form of a game.\n\r\nModule by TheThirdMan\r\nmoduleID:
-    deckOfManyThings\r\n\r\nGitHub Repository: https://github.com/luisdiogo98/ktane-deckOfManyThings\n\r\nManual
+  title: The Deck of Many Things [REUPLOAD]
+  description: "A traveller's journal in the form of a game.\n\r\n[b]This is a reupload
+    of a module by the original author. Please disable/unsubscribe to the older version
+    \ [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1785189166]here.[/url][/b]\n\nModule
+    originally by TheThirdMan\r\nReuploaded and Maintained by VFlyer\nmoduleID: deckOfManyThings\r\n\r\nGitHub
+    Repository (Legacy): https://github.com/luisdiogo98/ktane-deckOfManyThings\n\rGitHub
+    Repository (Reupload): https://github.com/VFlyer/ktane-deckOfManyThings\n\nManual
     HTML: https://ktane.timwi.de/HTML/The%20Deck%20of%20Many%20Things.html\r\nManual
-    PDF: https://ktane.timwi.de/PDF/The%20Deck%20of%20Many%20Things.pdf\r\n\r\nAny
-    problems/suggestions, feel free to contact me on the KTaNE Discord @TheThirdMan.
-    Join the KTaNE Discord here: https://discord.gg/Fv7YEDj"
-  version: 1.9
+    PDF: https://ktane.timwi.de/PDF/The%20Deck%20of%20Many%20Things.pdf\r\n"
+  version: 2.0
   outputFolder: build
   previewImage: {fileID: 2800000, guid: dc669d308f889034c95a0d84d38fd18a, type: 3}
