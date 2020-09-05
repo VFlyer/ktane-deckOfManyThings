@@ -546,7 +546,7 @@ public class deckOfManyThingsScript : MonoBehaviour
         string[] parameters = command.Split(' ');
         if (Regex.IsMatch(command, @"^\s*card\s*", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
-            string potentialSubCmd = command.Substring(5);
+            string potentialSubCmd = command.Substring(4).Trim();
             if (Regex.IsMatch(potentialSubCmd, @"^\d+$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
             {
                 yield return null;
@@ -595,7 +595,7 @@ public class deckOfManyThingsScript : MonoBehaviour
             }
             else
             {
-                yield return string.Format("sendtochaterror Unknown subcommand {0}", potentialSubCmd);
+                yield return string.Format("sendtochaterror Unknown subcommand \"{0}\"", potentialSubCmd);
                 yield break;
             }
             yield break;
