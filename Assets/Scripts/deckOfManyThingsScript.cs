@@ -442,7 +442,6 @@ public class deckOfManyThingsScript : MonoBehaviour
 
     IEnumerator PrevCardAnim()
     {
-        float yDelta = 0.00039f - 0.00004f * currentCard;
 
         AudioSelf.PlaySoundAtTransform("card_flick_2", transform);
 
@@ -466,7 +465,6 @@ public class deckOfManyThingsScript : MonoBehaviour
 
     IEnumerator NextCardAnim()
     {
-        float yDelta = 0.00039f - 0.00004f * currentCard;
 
         AudioSelf.PlaySoundAtTransform("card_flick_2", transform);
 
@@ -527,10 +525,13 @@ public class deckOfManyThingsScript : MonoBehaviour
     }
 
     #pragma warning disable 414
-    private readonly string TwitchHelpMessage = "Go to a specified card with \"!{0} card <#>\" Valid cards are from card 1 to card 40. To submit the current card: \"!{0} submit\" To put the cards back to initial state: \"!{0} reset\" Get the current card infomation with \"!{0} card info\"";
+    private readonly string TwitchHelpMessage = "Go to a specified card with \"!{0} card <#>\" Valid cards are from card 1 to card 40. Flip to the next or previous card with \"!{0} card prev/previous/next/right/left/r/l\" To submit the current card: \"!{0} submit\" To put the cards back to initial state: \"!{0} reset\" Get the current card infomation with \"!{0} card info\"";
     #pragma warning restore 414
     IEnumerator ProcessTwitchCommand(string command)
     {
+        if (Application.isEditor)
+            command = command.Trim();
+
         if (Regex.IsMatch(command, @"^\s*reset\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             yield return null;
@@ -544,7 +545,7 @@ public class deckOfManyThingsScript : MonoBehaviour
             yield break;
         }
         string[] parameters = command.Split(' ');
-        if (Regex.IsMatch(command, @"^\s*card\s*", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        if (Regex.IsMatch(command, @"^\s*card\s+", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             string potentialSubCmd = command.Substring(4).Trim();
             if (Regex.IsMatch(potentialSubCmd, @"^\d+$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
@@ -591,6 +592,28 @@ public class deckOfManyThingsScript : MonoBehaviour
                     yield return string.Format("sendtochat That is not a card. I don't know what that is.");
                 else
                     yield return string.Format("sendtochat {0}", selectedCard.PrintTPCardInfo());
+                yield break;
+            }
+            else if (Regex.IsMatch(potentialSubCmd, @"^(next|r(ight)?)$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+            {
+                if (currentCard == 39)
+                {
+                    yield return "sendtochaterror {0}, you are already at the end of the deck!";
+                    yield break;
+                }
+                yield return null;
+                nextCard.OnInteract();
+                yield break;
+            }
+            else if (Regex.IsMatch(potentialSubCmd, @"^(prev(ious)?|l(eft)?)$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+            {
+                if (currentCard == -1)
+                {
+                    yield return "sendtochaterror {0}, you are already at the start of the deck!";
+                    yield break;
+                }
+                yield return null;
+                prevCard.OnInteract();
                 yield break;
             }
             else
