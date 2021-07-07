@@ -472,7 +472,7 @@ public class deckOfManyThingsScript : MonoBehaviour
 
         animating = false;
 
-        yield return new WaitForSeconds(0.0f);
+        yield return null;
     }
 
     //twitch plays
@@ -493,7 +493,8 @@ public class deckOfManyThingsScript : MonoBehaviour
             while (animating)
                 yield return true;
         }
-        yield return new WaitWhile(() => animating);
+        while (animating)
+            yield return true;
         btns[1].OnInteract();
         yield return true;
     }
