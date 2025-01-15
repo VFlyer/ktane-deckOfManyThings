@@ -426,7 +426,7 @@ public class deckOfManyThingsScript : MonoBehaviour
             yield return PrevCardAnim();
         }
 
-        yield return new WaitForSeconds(0.0f);
+        yield return null;
     }
 
     void PrevCard()

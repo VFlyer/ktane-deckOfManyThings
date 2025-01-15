@@ -21,6 +21,6 @@ MonoBehaviour:
     Repository (Reupload): https://github.com/VFlyer/ktane-deckOfManyThings\n\nManual
     HTML: https://ktane.timwi.de/HTML/The%20Deck%20of%20Many%20Things.html\r\nManual
     PDF: https://ktane.timwi.de/PDF/The%20Deck%20of%20Many%20Things.pdf\r\n"
-  version: 2.0
+  version: 2.0.1
   outputFolder: build
   previewImage: {fileID: 2800000, guid: dc669d308f889034c95a0d84d38fd18a, type: 3}
